@@ -1,0 +1,13 @@
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\bin\Release\WpfApplication4.exe.config
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\bin\Release\WpfApplication4.exe
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\bin\Release\WpfApplication4.pdb
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\MainWindow.g.cs
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\App.g.cs
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4_MarkupCompile.cache
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4_MarkupCompile.lref
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\MainWindow.baml
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4.g.resources
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4.Properties.Resources.resources
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\ProjectHints.csproj.GenerateResource.Cache
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4.exe
+C:\Users\kayuh_000\Downloads\ProjectHints\ProjectHints\WpfApplication4\obj\Release\WpfApplication4.pdb
