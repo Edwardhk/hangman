@@ -2,6 +2,10 @@
 
 This game is implemented with C# and WPF form.
 
+Executable: `Demo.exe`
+
+Visual Studio project files: `Project.csproj`
+
 ### Winning Screen Capture
 ![Alt Text](win.gif)
 
