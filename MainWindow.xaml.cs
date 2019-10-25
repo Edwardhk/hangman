@@ -13,16 +13,30 @@ namespace WPFHangman
 {
     public partial class MainWindow : Window
     {
+        // UI parameters
         private const int BTN_WIDTH = 60;
         private const int BTN_HEIGHT = 40;
         private const int BTN_FSIZE = 20;
         private const int ROW_SIZE = 9;
-        private static string ANSWER = "RACHMANINOFF";
+
+        // Game parameters
+        private static string[] ansList = {
+            "CHOPIN",
+            "RACHMANINOFF",
+            "MOZART",
+            "BACH",
+            "DEBUSSY",
+            "VIVALDI",
+            "LISZT",
+            "TCHAIKOVSKY"
+        };
+        private static string ANSWER;
         private static string GUESS = "";
         private int count = 0;
-        private List<Button> btnList = new List<Button>();
+        //private List<Button> btnList = new List<Button>();
 
-        public void addStartBtn()
+        // UI controller
+        private void addStartBtn()
         {
             int btnWidth = 200;
             Button btnStart = new Button();
@@ -37,6 +51,37 @@ namespace WPFHangman
             Canvas.SetLeft(btnStart, (canvasStart.Width - btnWidth) / 2);
             Canvas.SetTop(btnStart, 10);
             canvasStart.Children.Add(btnStart);
+        }
+
+        private Button addGameBtn(char txt)
+        {
+            Button btn = new Button();
+            btn.Content = txt;
+
+            // Styling
+            btn.Foreground = Brushes.Black;
+            btn.Background = Brushes.White;
+            btn.FontSize = BTN_FSIZE;
+            btn.Width = BTN_WIDTH;
+            btn.Height = BTN_HEIGHT;
+            btn.FontFamily = new FontFamily("Consolas");
+            btn.Click += solveChallenge;
+
+            return btn;
+        }
+
+        private void addChallenge()
+        {
+            Random rand = new Random();
+            ANSWER = ansList[rand.Next(ansList.Length)];
+
+            foreach (char c in ANSWER)
+                GUESS += (c == ' ') ? " " : "*";
+
+            addLine(200, 280, 800, 280);
+            addLine(350, 280, 350, 50);
+            addLine(350, 50, 600, 50);
+            addLine(500, 50, 500, 100);
         }
 
         private void addLine(int X1, int Y1, int X2, int Y2)
@@ -56,7 +101,7 @@ namespace WPFHangman
         {
             switch (count)
             {
-               case 1:
+                case 1:
                     Ellipse e = new Ellipse();
                     e.Stroke = Brushes.White;
                     e.StrokeThickness = 4;
@@ -67,9 +112,9 @@ namespace WPFHangman
                     canvasMain.Children.Add(e);
                     break;
                 case 2:
-                    addLine(500, 150, 500, 200);break;
+                    addLine(500, 150, 500, 200); break;
                 case 3:
-                    addLine(500, 160, 480, 180);break;
+                    addLine(500, 160, 480, 180); break;
                 case 4:
                     addLine(500, 160, 520, 180); break;
                 case 5:
@@ -80,22 +125,15 @@ namespace WPFHangman
             }
         }
 
-        public void addChallenge()
+        private void prepareGame()
         {
-            foreach (char c in ANSWER)
-            {
-                if (c == ' ')
-                    GUESS += " ";
-                else
-                    GUESS += "*";
-            }
-
-            addLine(200, 280, 800, 280);
-            addLine(350, 280, 350, 50);
-            addLine(350, 50, 600, 50); 
-            addLine(500, 50, 500, 100);
+            txtTitle.Text = "The Hang Man v1.0";
+            addStartBtn();
+            addChallenge();
         }
 
+
+        // Game controller
         private void solveChallenge(object sender, RoutedEventArgs e)
         {
             char attempt = (char)((Button)sender).Content;
@@ -118,60 +156,57 @@ namespace WPFHangman
 
             if (GUESS == ANSWER)
             {
-                Console.WriteLine("WIN!");
+                showWin();
             }
-            else if(count == 6)
+            else if (count == 6)
             {
-                canvasMain.Children.Clear();
-                TextBlock tb = new TextBlock();
-                tb.Foreground = Brushes.Red;
-                tb.Background = Brushes.Black;
-                tb.Text = "Nice try...\n\nAnswer:\n\"" + ANSWER + "\"";
-                tb.FontFamily = new FontFamily("Consolas");
-                tb.FontSize = 30;
-                tb.Height = 200;
-                tb.Width = 800;
-                tb.TextAlignment = TextAlignment.Center;
-                Canvas.SetTop(tb, 50);
-                Canvas.SetLeft(tb, 100);
-
-
-                Thread.Sleep(1000);
-                canvasMain.Children.Add(tb);
+                showLose();
             }
 
             ((Button)sender).IsEnabled = false;
         }
 
-        public MainWindow()
+        private void showWin()
         {
-            InitializeComponent();
-            addStartBtn();
-            addChallenge();
+            canvasMain.Children.Clear();
+            TextBlock tb = new TextBlock();
+            tb.Foreground = Brushes.Yellow;
+            tb.Background = Brushes.Black;
+            tb.Text = "Congratulations\n\nYou Win with " + count + " mistakes!!";
+            tb.FontFamily = new FontFamily("Consolas");
+            tb.FontSize = 20;
+            tb.Height = 200;
+            tb.Width = 800;
+            tb.TextAlignment = TextAlignment.Center;
+            Canvas.SetTop(tb, 50);
+            Canvas.SetLeft(tb, 100);
+
+            canvasMain.Children.Add(tb);
         }
 
-        private Button getGameBtn(char txt)
+        private void showLose()
         {
-            Button btn = new Button();
-            btn.Content = txt;
+            canvasMain.Children.Clear();
+            TextBlock tb = new TextBlock();
+            tb.Foreground = Brushes.Red;
+            tb.Background = Brushes.Black;
+            tb.Text = "nice try...\n\nAnswer:\n\"" + ANSWER + "\"";
+            tb.FontFamily = new FontFamily("Consolas");
+            tb.FontSize = 20;
+            tb.Height = 200;
+            tb.Width = 800;
+            tb.TextAlignment = TextAlignment.Center;
+            Canvas.SetTop(tb, 50);
+            Canvas.SetLeft(tb, 100);
 
-            // Styling
-            btn.Foreground = Brushes.Black;
-            btn.Background = Brushes.White;
-            btn.FontSize = BTN_FSIZE;
-            btn.Width = BTN_WIDTH;
-            btn.Height = BTN_HEIGHT;
-            btn.FontFamily = new FontFamily("Consolas");
-            btn.Click += solveChallenge;
-
-            return btn;
+            canvasMain.Children.Add(tb);
         }
 
         private void StartGame(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < 26; i++)
             {
-                Button btn = getGameBtn((char)('A' + i));
+                Button btn = addGameBtn((char)('A' + i));
                 Canvas.SetLeft(btn, i % ROW_SIZE * BTN_WIDTH);
 
                 if (i >= ROW_SIZE)
@@ -181,11 +216,17 @@ namespace WPFHangman
                     else
                         Canvas.SetTop(btn, BTN_HEIGHT * 2);
                 }
-                btnList.Add(btn);
+                //btnList.Add(btn);
                 canvasBtn.Children.Add(btn);
             }
 
             txtTitle.Text = GUESS;
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            prepareGame();
         }
     }
 }

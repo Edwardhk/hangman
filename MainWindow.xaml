@@ -6,18 +6,17 @@
         xmlns:local="clr-namespace:WPFHangman"
         mc:Ignorable="d"
         Title="The Hang Man" Height="600" Width="1000">
-  <Grid Margin="0,1,0,-1">
-    <StackPanel>
-      <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" Height="50"
+    <Grid Margin="0,1,0,-1">
+        <StackPanel>
+            <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" Height="50"
         FontFamily = "Consolas" LineHeight = "2" FontSize = "20">
-        The Hang Man v1.0
-      </TextBlock>
-      <Canvas x:Name="canvasMain" HorizontalAlignment="Center" Height="300" Width="1000"
+            </TextBlock>
+            <Canvas x:Name="canvasMain" HorizontalAlignment="Center" Height="300" Width="1000"
               Background="#000"/>
-      <Canvas x:Name="canvasStart" HorizontalAlignment="Center" Height="50" Width="1000"
+            <Canvas x:Name="canvasStart" HorizontalAlignment="Center" Height="50" Width="1000"
               Background="#fff"/>
-      <Canvas x:Name="canvasBtn" HorizontalAlignment="Center" Height="300" Width="1000"
-              Background="#f4f4f4"/>
-    </StackPanel>
-  </Grid>
+            <Canvas x:Name="canvasBtn" HorizontalAlignment="Center" Height="169" Width="1000"
+              Background="#f4f4f4" Margin="-4,0"/>
+        </StackPanel>
+    </Grid>
 </Window>
